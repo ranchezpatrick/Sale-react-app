@@ -8,4 +8,4 @@ const AddEdit = () => {
     )
 }
 
-export default AddEdit
+export default AddEdit;
