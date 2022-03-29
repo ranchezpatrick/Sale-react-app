@@ -1,5 +1,5 @@
 import React, {useState, useEffect}from 'react';
-import {useHistory, useParams} from "react-router-dom";
+import {useNavigate, useParams} from "react-router-dom";
 import './AddEdit.css';
 import fireDb from "../firebase";
 import {toast} from "react-toastify";
@@ -17,8 +17,28 @@ const AddEdit = () => {
     const [data, setData] = useState({});
 
     const {name, size, category, cost} = state;
-    const handleInputChange = () => {};
-    const handleSubmit = () => {};
+
+    const navigate = useNavigate();
+    
+    const handleInputChange = (e) => {
+        const {name, value} = e.target;
+        setState({...state, [name]: value });
+    };
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        if(!name || !size || !cost || !category) {
+            toast.error("Please provide a value in each input field")
+        } else {
+            fireDb.child("sales").push(state, (err) => {
+                if(err) {
+                    toast.error(err);
+                } else {
+                    toast.success("Item Added Successfully");
+                }
+            });
+            setTimeout(() => navigate("/"), 500)
+        }
+    };
     return (
         <div style={{marginTop: "100px"}}>
             <form style={{
@@ -51,7 +71,7 @@ const AddEdit = () => {
                 id= "size"
                 name= "size"
                 placeHolder= "Small, Medium or Large"
-                value={name}
+                value={cost}
                 onChange={handleInputChange}
                 />
 
@@ -63,7 +83,7 @@ const AddEdit = () => {
                 id= "cost"
                 name= "cost"
                 placeHolder= "Cost"
-                value={name}
+                value={size}
                 onChange={handleInputChange}
                 />
 
@@ -75,7 +95,7 @@ const AddEdit = () => {
                 id= "category"
                 name= "category"
                 placeHolder= "Category"
-                value={name}
+                value={category}
                 onChange={handleInputChange}
                 />  
 
