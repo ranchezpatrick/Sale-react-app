@@ -7,6 +7,8 @@ import { toast } from 'react-toastify';
 
 const Home = () => {
     const [data, setData] = useState({});
+
+
     useEffect(() => {
         fireDb.child("sales").on("value", (snapshot) => {
             if(snapshot.val()!==null){
@@ -43,6 +45,8 @@ const Home = () => {
                         <th style={{textAlign: "center"}}>Size</th>
                         <th style={{textAlign: "center"}}>Category</th>
                         <th style={{textAlign: "center"}}>Cost</th>
+                        <th style={{textAlign: "center"}}>Price</th>
+                        <th style={{textAlign: "center"}}>Amount</th>
                         <th style={{textAlign: "center"}}>Action</th>
                     </tr>
                 </thead>
@@ -55,6 +59,8 @@ const Home = () => {
                                 <td>{data[id].size}</td>
                                 <td>{data[id].category}</td>
                                 <td>{data[id].cost}</td>
+                                <td>{data[id].price}</td>
+                                <td>{data[id].amount}</td>
 
                                 
                                     <Link to={`/update/${id}`}>

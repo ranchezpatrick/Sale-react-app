@@ -10,13 +10,15 @@ const initialState = {
     size: "",
     cost: "",
     category: "",
+    price: "",
+    amount: "",
 
 }
 const AddEdit = () => {
     const [state, setState] = useState(initialState);
     const [data, setData] = useState({});
 
-    const {name, size, category, cost} = state;
+    const {name, size, category, cost, price, amount} = state;
 
     const navigate = useNavigate();
 
@@ -55,8 +57,8 @@ const AddEdit = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        if(!name || !size || !cost || !category) {
-            toast.error("Please provide a value in each input field")
+        if(!name || !cost || !category || !price || !amount) {
+            toast.error("Please provide a value in each required input field")
         } else {
             if(!id) {
                 fireDb.child("sales").push(state, (err) => {
@@ -116,7 +118,7 @@ const AddEdit = () => {
                 />
 
                 <label htmlFor="size">
-                Size
+                Size - optional
                 </label>
                 <input 
                 type="text"
@@ -137,7 +139,33 @@ const AddEdit = () => {
                 placeHolder= "Category"
                 value={category || ""}
                 onChange={handleInputChange}
-                />  
+                /> 
+
+                <label htmlFor="price">
+                Price
+                </label>
+                <input 
+                type="text"
+                id= "price"
+                name= "price"
+                placeHolder= "Price"
+                value={price || ""}
+                onChange={handleInputChange}
+                /> 
+
+                <label htmlFor="amount">
+                Amount
+                </label>
+                <input 
+                type="text"
+                id= "amount"
+                name= "amount"
+                placeHolder= "Amount"
+                value={amount || ""}
+                onChange={handleInputChange}
+                />    
+
+                
 
                 <input type="submit" value={id ? "Update" : "Save"} />
                 </form>
