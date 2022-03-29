@@ -43,6 +43,14 @@ const View = () => {
                     <span>{item.cost}</span>
                     <br />
                     <br />
+                    <strong>Price: </strong>
+                    <span>{item.price}</span>
+                    <br />
+                    <br />
+                    <strong>Amount: </strong>
+                    <span>{item.amount}</span>
+                    <br />
+                    <br />
                     <Link to="/">
                         <button className="btn btn-edit"> Go Back</button>
                     </Link>
