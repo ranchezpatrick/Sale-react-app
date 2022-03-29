@@ -68,9 +68,9 @@ const AddEdit = () => {
                 </label>
                 <input 
                 type="number"
-                id= "size"
-                name= "size"
-                placeHolder= "Small, Medium or Large"
+                id= "cost"
+                name= "cost"
+                placeHolder= "Cost"
                 value={cost}
                 onChange={handleInputChange}
                 />
@@ -80,9 +80,9 @@ const AddEdit = () => {
                 </label>
                 <input 
                 type="text"
-                id= "cost"
-                name= "cost"
-                placeHolder= "Cost"
+                id= "size"
+                name= "size"
+                placeHolder= "Small, Medium or Large"
                 value={size}
                 onChange={handleInputChange}
                 />
