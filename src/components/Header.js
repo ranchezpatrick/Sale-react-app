@@ -4,6 +4,19 @@ import "./Header.css"
 
 const Header = () => {
     const [activeTab, setActivetab] = useState("Home");
+    const location = useLocation();
+
+
+    useEffect(() => {
+    if(location.pathname === "/") {
+        setActivetab("Home")
+    }   else if(location.pathname === "/add") {
+        setActivetab("Add")
+    }   else if(location.pathname === "/about") {
+        setActivetab("About")
+    }
+    }, [location]);
+
     return (
         <div className="header">
             <p className="logo">Sale App</p>
